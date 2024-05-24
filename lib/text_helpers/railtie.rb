@@ -65,7 +65,7 @@ module TextHelpers
     initializer "text_helpers.setup_exception_handling", after: 'after_initialize' do
       next unless config.text_helpers.raise_on_missing_translations
 
-      if Rails::VERSION::MAJOR >= 7
+      if Rails::VERSION::MAJOR >= 7 || (Rails::VERSION::MAJOR == 6 && Rails::VERSION::MINOR >= 1)
         if config.respond_to?(:i18n)
           config.i18n.raise_on_missing_translations = true
         end
